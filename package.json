@@ -1,0 +1,34 @@
+{
+  "name": "wechat-customer-service-worker",
+  "version": "1.0.0",
+  "description": "微信客服 Cloudflare Worker 版本 - 支持多种 OpenAI 兼容 AI 服务",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:prod": "wrangler deploy --env production",
+    "deploy:dev": "wrangler deploy --env development",
+    "tail": "wrangler tail",
+    "kv:create": "wrangler kv:namespace create CONVERSATIONS && wrangler kv:namespace create MESSAGE_TRACKER",
+    "kv:create:preview": "wrangler kv:namespace create CONVERSATIONS --preview && wrangler kv:namespace create MESSAGE_TRACKER --preview"
+  },
+  "keywords": [
+    "wechat",
+    "customer-service",
+    "cloudflare-worker",
+    "ai-chatbot",
+    "openai-compatible",
+    "k2think",
+    "multi-ai-service"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "@wecom/crypto": "^1.0.1",
+    "fast-xml-parser": "^5.2.5"
+  }
+}
