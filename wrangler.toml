@@ -1,0 +1,41 @@
+# Cloudflare Worker 配置文件
+
+name = "wechat-customer-service"
+main = "index.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+name = "wechat-customer-service"
+# 微信企业号配置
+WECHAT_CORP_ID=""
+WECHAT_KF_SECRET=""
+WECHAT_KF_TOKEN=""
+WECHAT_KF_ENCODING_AES_KEY=""
+
+# 加密服务配置（由于 CF Worker CRYPTO 兼容性问题，需要单独部署）
+CRYPTO_SERVICE_URL=""
+
+# OpenAI API 配置
+OPENAI_API_KEY=""
+OPENAI_BASE_URL=""
+OPENAI_MODEL=""
+OPENAI_TIMEOUT=30000
+# OPENAI_ORGANIZATION=org-your-org-id
+# OPENAI_PROJECT=proj-your-project-id
+
+# 系统提示词配置
+SYSTEM_PROMPT="your are helpful assistant, reply in chinese, and reply in plain text format, text length should be less than 10240 characters" 
+
+
+# KV存储配置（用于持久化对话历史）
+[[kv_namespaces]]
+binding = "CONVERSATIONS"
+id = ""
+preview_id = ""
+
+# KV存储配置（用于消息处理状态跟踪）
+[[kv_namespaces]]
+binding = "MESSAGE_TRACKER"
+id = ""
+preview_id = ""
