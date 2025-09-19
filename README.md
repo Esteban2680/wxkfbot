@@ -141,4 +141,4 @@ MIT License
 
 如有问题，请提交 Issue 或通过以下方式联系：
 
--   项目地址：[GitHub](https://github.com/yourusername/wxkfbot)
+-   项目地址：[GitHub](https://github.com/bestk/wxkfbot)
